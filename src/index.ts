@@ -7,6 +7,7 @@ import { showDaily } from './commands/daily.js';
 import { showMonthly } from './commands/monthly.js';
 import { showSession } from './commands/session.js';
 import { parseCodexSessions } from './commands/parse.js';
+import { analyzeModelPatterns } from './commands/analyze.js';
 import { VERSION } from './constants.js';
 
 const program = new Command();
@@ -47,5 +48,10 @@ program
   .description('Parse existing Codex session files to extract usage')
   .option('--estimate', 'Show token estimation notice')
   .action(parseCodexSessions);
+
+program
+  .command('analyze')
+  .description('Advanced analysis to detect actual models used')
+  .action(analyzeModelPatterns);
 
 program.parse();

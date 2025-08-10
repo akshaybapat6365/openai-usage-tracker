@@ -21,13 +21,33 @@ export function formatCost(cost: number): string {
 export function getModelColor(model: string): string {
   const modelLower = model.toLowerCase();
   
+  // GPT-5 and 4.5 (newest)
+  if (modelLower.includes('gpt-5')) return chalk.bold.red('GPT-5');
+  if (modelLower.includes('gpt-4.5')) return chalk.bold.hex('#FF6B6B')('GPT-4.5');
+  
+  // O3 reasoning models (chain-of-thought)
+  if (modelLower.includes('o3-pro')) return chalk.bold.hex('#FFD700')('o3-pro');
+  if (modelLower.includes('o3-mini')) return chalk.hex('#FFA500')('o3-mini');
+  if (modelLower.includes('o3')) return chalk.bold.yellow('o3');
+  
+  // O4 models
+  if (modelLower.includes('o4-mini')) return chalk.green('o4-mini');
+  if (modelLower.includes('o4')) return chalk.bold.green('o4');
+  
+  // O1 models
+  if (modelLower.includes('o1-preview')) return chalk.hex('#9B59B6')('o1-preview');
+  if (modelLower.includes('o1-mini')) return chalk.hex('#8E44AD')('o1-mini');
+  
+  // GPT-4o family
   if (modelLower.includes('gpt-4o-mini')) return chalk.cyan('GPT-4o-mini');
   if (modelLower.includes('gpt-4o')) return chalk.blue('GPT-4o');
+  
+  // GPT-4 family
   if (modelLower.includes('gpt-4-turbo')) return chalk.magenta('GPT-4-Turbo');
   if (modelLower.includes('gpt-4')) return chalk.bold.magenta('GPT-4');
-  if (modelLower.includes('o1-preview')) return chalk.bold.yellow('o1-preview');
-  if (modelLower.includes('o1-mini')) return chalk.yellow('o1-mini');
-  if (modelLower.includes('o4-mini')) return chalk.green('o4-mini');
+  
+  // Special models
+  if (modelLower.includes('model-max')) return chalk.bold.hex('#FF1493')('MODEL-MAX');
   
   return chalk.gray(model);
 }
