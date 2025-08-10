@@ -1,4 +1,4 @@
-# codex-usage
+# 🚀 OpenAI Usage Tracker
 
 Track and analyze OpenAI Codex CLI usage and costs, similar to [ccusage](https://github.com/ryoppippi/ccusage) for Claude Code.
 
@@ -12,10 +12,22 @@ Track and analyze OpenAI Codex CLI usage and costs, similar to [ccusage](https:/
 
 ## Installation
 
+### From GitHub
 ```bash
+# Clone the repository
+git clone https://github.com/akshaybapat6365/openai-usage-tracker.git
+cd openai-usage-tracker
+
+# Install dependencies
 npm install
+
+# Build the project
 npm run build
-npm link  # Optional: to use globally
+
+# Install globally (optional)
+npm link
+
+# Now you can use 'cxu' or 'codex-usage' commands globally
 ```
 
 ## Usage
@@ -26,6 +38,8 @@ Since Codex uses ChatGPT authentication (not API keys), the tool can parse your 
 
 ```bash
 # Parse all Codex session files in ~/.codex/sessions/
+cxu parse --estimate
+# OR if not installed globally:
 node dist/index.js parse --estimate
 
 # This will extract usage data and save it to ~/.codex-usage/usage.jsonl
@@ -35,18 +49,18 @@ node dist/index.js parse --estimate
 
 ```bash
 # Daily usage report
-node dist/index.js daily
-node dist/index.js daily --from 2025-01-01 --to 2025-01-31
-node dist/index.js daily --json  # JSON output
+cxu daily
+cxu daily --from 2025-01-01 --to 2025-01-31
+cxu daily --json  # JSON output
 
 # Monthly usage report  
-node dist/index.js monthly
-node dist/index.js monthly --month 2025-01
-node dist/index.js monthly --json
+cxu monthly
+cxu monthly --month 2025-01
+cxu monthly --json
 
 # Session-based report
-node dist/index.js session
-node dist/index.js session --json
+cxu session
+cxu session --json
 ```
 
 ## How It Works
@@ -89,6 +103,26 @@ Since Codex doesn't store exact token counts, the tool estimates:
 ## Alternative: Direct API Tracking
 
 If you use OpenAI API directly (not through Codex CLI), you can track real-time usage with the API key approach. However, this is not applicable for the Codex CLI tool which uses ChatGPT authentication.
+
+## Beautiful Output Example
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           📊 DAILY USAGE REPORT                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+╔════════════╤════════════╤════════════╤══════════╤════════════╤════════════╤════════════════════╗
+║ Date       │ Input      │ Output     │ Cache    │ Total      │ Cost (USD) │ Models             ║
+╟────────────┼────────────┼────────────┼──────────┼────────────┼────────────┼────────────────────╢
+║ 2025-04-20 │ 305        │ 8.0K       │ 0        │ 8.3K       │ $0.491     │ GPT-4              ║
+╟────────────┼────────────┼────────────┼──────────┼────────────┼────────────┼────────────────────╢
+║ 2025-04-21 │ 220.8K     │ 1.18M      │ 0        │ 1.40M      │ $77.67     │ GPT-4              ║
+╚════════════╧════════════╧════════════╧══════════╧════════════╧════════════╧════════════════════╝
+```
+
+## Repository
+
+🔗 [GitHub: openai-usage-tracker](https://github.com/akshaybapat6365/openai-usage-tracker)
 
 ## License
 
